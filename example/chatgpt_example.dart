@@ -24,11 +24,11 @@ void main() async {
   var stream =
       openai.onChatCompleteStream(request: request).asBroadcastStream();
 
-  stream.listen((res) {
-    print(res?.choices?.first.message);
-  }, onDone: _onDone).onError((err) {
+  stream.listen(
+    (res) {
+      print(res?.choices?.first.message);
+    },
+  ).onError((err) {
     print("$err");
   });
 }
-
-void _onDone() async {}

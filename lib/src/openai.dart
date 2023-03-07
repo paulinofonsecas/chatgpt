@@ -26,15 +26,14 @@ class OpenAI {
 
   /// openai token
   /// use for access for chat gpt [_token]
-  static String? _token;
+  late String _token;
 
   /// set new token
   void setToken(String token) async {
     _token = token;
-    await _box?.put(kTokenKey, token);
   }
 
-  String getToken() => "$_token";
+  String getToken() => _token;
 
   ///build environment for openai [build]
   ///setup http client
@@ -52,6 +51,8 @@ class OpenAI {
     dio.interceptors.add(InterceptorWrapper(token!));
 
     _client = OpenAIClient(dio: dio, isLogging: isLogger);
+
+    setToken(token);
 
     return instance;
   }
@@ -96,12 +97,6 @@ class OpenAI {
     return _completeControl.stream;
   }
 
-  Stream<ChatCompletationResponse?> onChatCompleteStream(
-      {required ChatCompletionRequest request}) {
-    _chatCompleteText(request: request);
-    return _chatCompleteControl.stream;
-  }
-
   final _completeControl = StreamController<CTResponse>.broadcast();
   void _completeText({required CompleteText request}) {
     _client.postStream("$kURL$kCompletion", request.toJson()).listen((rawData) {
@@ -128,28 +123,34 @@ class OpenAI {
     });
   }
 
-  final _chatCompleteControl =
-      StreamController<ChatCompletationResponse>.broadcast();
+  final _chatCompletationControl = StreamController<CCResponse>.broadcast();
+
+  Stream<CCResponse?> onChatCompleteStream(
+      {required ChatCompletionRequest request}) {
+    _chatCompleteText(request: request);
+    return _chatCompletationControl.stream;
+  }
+
   void _chatCompleteText({required ChatCompletionRequest request}) {
     _client
         .postStream("$kURL$kChatCompletion", request.toJson())
         .listen((rawData) {
       if (rawData.statusCode != HttpStatus.ok) {
         _client.log.errorLog(code: rawData.statusCode, error: rawData.data);
-        _chatCompleteControl
+        _chatCompletationControl
           ..sink
           ..addError(
               "complete error: ${rawData.statusMessage} code: ${rawData.statusCode} data: ${rawData.data}");
       } else {
         _client.log.debugString(
             "============= success ==================\nresponse body :${rawData.data}");
-        _chatCompleteControl
+        _chatCompletationControl
           ..sink
-          ..add(ChatCompletationResponse.fromJson(rawData.data));
+          ..add(CCResponse.fromJson(rawData.data));
       }
     }).onError((err) {
       if (err is DioError) {
-        _chatCompleteControl
+        _chatCompletationControl
           ..sink
           ..addError(
               "complete error: status code :${err.error}\n error body :${err.response?.data}");
