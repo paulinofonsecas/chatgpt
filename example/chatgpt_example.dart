@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:dart_chatgpt/dart_chatgpt.dart';
 import 'package:dart_chatgpt/src/model/chat_completation/request/chat_completation_request.dart';
-import 'package:hive/hive.dart';
 
 void main() async {
   var openai = OpenAI.instance.build(

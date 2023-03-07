@@ -31,13 +31,7 @@ class OpenAI {
   static String? _token;
 
   static Box<String>? _box;
-  static final dirPath = '${path.current}\\.data';
-
-  ///new instance prefs for keep my data
-  void _buildShared() async {
-    Hive.init(dirPath);
-    _box = await Hive.openBox('token_ai');
-  }
+  static final boxDirPath = '${path.current}\\.data';
 
   /// set new token
   void setToken(String token) async {
@@ -47,24 +41,30 @@ class OpenAI {
 
   String getToken() => "$_token";
 
+  ///new instance _box for keep my data
+  void _buildHive() async {
+    Hive.init(boxDirPath);
+    _box = await Hive.openBox('token_ai');
+  }
+
   ///build environment for openai [build]
   ///setup http client
   ///setup logger
   OpenAI build({String? token, HttpSetup? baseOption, bool isLogger = false}) {
-    _buildShared();
+    _buildHive();
 
     if ("$token".isEmpty) throw MissionTokenException();
+
     final setup = baseOption ?? HttpSetup();
-
     final dio = Dio(BaseOptions(
-        sendTimeout: setup.sendTimeout,
-        connectTimeout: setup.connectTimeout,
-        receiveTimeout: setup.receiveTimeout));
+      sendTimeout: setup.sendTimeout,
+      connectTimeout: setup.connectTimeout,
+      receiveTimeout: setup.receiveTimeout,
+    ));
 
-    dio.interceptors.add(InterceptorWrapper(_box, token!));
+    dio.interceptors.add(InterceptorWrapper(token!));
 
     _client = OpenAIClient(dio: dio, isLogging: isLogger);
-    setToken(token);
 
     return instance;
   }

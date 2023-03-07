@@ -26,7 +26,7 @@ Map<String, String> kHeaderOrg(String orgId) =>
     {"Content-Type": 'application/json', "Authorization": "Bearer $orgId"};
 
 ///key data
-const kTokenKey = 'token';
+const kTokenKey = 'token_ai';
 const kOrgIdKey = 'orgId';
 
 String translateEngToThai({required String word}) =>

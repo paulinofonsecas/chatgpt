@@ -1,18 +1,15 @@
 import 'package:dio/dio.dart';
-import 'package:hive/hive.dart';
 
 import '../../utils/constants.dart';
 
 class InterceptorWrapper extends Interceptor {
-  final Box<String>? box;
   final String token;
-  InterceptorWrapper(this.box, this.token);
+  InterceptorWrapper(this.token);
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    final mToken = token.isEmpty ? "${box?.get(kTokenKey)}" : token;
-    options.headers.addAll(kHeader(mToken));
-    return handler.next(options); // super.onRequest(options, handler);
+    options.headers.addAll(kHeader(token));
+    return handler.next(options);
   }
 
   @override
