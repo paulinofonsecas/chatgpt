@@ -1,4 +1,4 @@
-import 'package:chatgpt/src/model/openai_model/permission.dart';
+import 'package:dart_chatgpt/src/model/openai_model/permission.dart';
 
 class ModelData {
   final String id;

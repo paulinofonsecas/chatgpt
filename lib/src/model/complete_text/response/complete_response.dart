@@ -1,4 +1,4 @@
-import 'package:chatgpt/src/model/complete_text/response/usage.dart';
+import 'package:dart_chatgpt/src/model/complete_text/response/usage.dart';
 
 import 'choices.dart';
 

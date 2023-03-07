@@ -1,5 +1,7 @@
-import 'package:chatgpt/chatgpt.dart';
-import 'package:chatgpt/src/model/chat_completation/request/chat_completation_request.dart';
+import 'dart:io';
+
+import 'package:dart_chatgpt/dart_chatgpt.dart';
+import 'package:dart_chatgpt/src/model/chat_completation/request/chat_completation_request.dart';
 import 'package:hive/hive.dart';
 
 void main() async {
@@ -13,8 +15,8 @@ void main() async {
     messages: [
       Message(
           role: 'system',
-          content:
-              'Você é um chatbot chamado Professor, que ajuda os alunos a'' resolverem problemas escolares de forma divertida em portugês.'),
+          content: 'Você é um chatbot chamado Professor, que ajuda os alunos a'
+              ' resolverem problemas escolares de forma divertida em portugês.'),
       Message(
           role: 'user',
           content:
@@ -32,6 +34,4 @@ void main() async {
   });
 }
 
-void _onDone() async {
-  Hive.deleteFromDisk();
-}
+void _onDone() async {}

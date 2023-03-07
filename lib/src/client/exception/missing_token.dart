@@ -1,4 +1,4 @@
-import 'package:chatgpt/src/client/exception/base_error.dart';
+import 'package:dart_chatgpt/src/client/exception/base_error.dart';
 
 class MissionTokenException extends BaseErrorWrapper {
   @override

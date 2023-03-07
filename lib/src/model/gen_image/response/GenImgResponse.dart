@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-import 'package:chatgpt/src/model/gen_image/response/image_data.dart';
+import 'package:dart_chatgpt/src/model/gen_image/response/image_data.dart';
 
 class GenImgResponse {
   GenImgResponse({

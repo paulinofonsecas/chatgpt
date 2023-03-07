@@ -1,4 +1,4 @@
-library chatgpt;
+library dart_chatgpt;
 
 export 'src/openai.dart';
 export 'src/utils/constants.dart';

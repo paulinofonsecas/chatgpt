@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:chatgpt/src/client/base_client.dart';
-import 'package:chatgpt/src/client/exception/request_error.dart';
-import 'package:chatgpt/src/logger/logger.dart';
+import 'package:dart_chatgpt/src/client/base_client.dart';
+import 'package:dart_chatgpt/src/client/exception/request_error.dart';
+import 'package:dart_chatgpt/src/logger/logger.dart';
 import 'package:dio/dio.dart';
 
 class OpenAIClient extends OpenAIWrapper {

@@ -1,6 +1,6 @@
-name: chatgpt
-description: A starting point for Dart libraries or applications.
-version: 1.0.0
+name: dart_chatgpt
+description: chaGPT
+version: 1.0.1
 repository: https://github.com/paulinofonsecass/chatgpt
 
 environment:

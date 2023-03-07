@@ -1,17 +1,17 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:chatgpt/src/client/client.dart';
-import 'package:chatgpt/src/model/chat_completation/request/chat_completation_request.dart';
-import 'package:chatgpt/src/model/chat_completation/response/chat_completation_response.dart';
-import 'package:chatgpt/src/model/client/http_setup.dart';
-import 'package:chatgpt/src/model/complete_text/request/complete_text.dart';
-import 'package:chatgpt/src/model/complete_text/response/complete_response.dart';
-import 'package:chatgpt/src/model/gen_image/request/generate_image.dart';
-import 'package:chatgpt/src/model/gen_image/response/GenImgResponse.dart';
-import 'package:chatgpt/src/model/openai_engine/engine_model.dart';
-import 'package:chatgpt/src/model/openai_model/openai_models.dart';
-import 'package:chatgpt/src/utils/constants.dart';
+import 'package:dart_chatgpt/src/client/client.dart';
+import 'package:dart_chatgpt/src/model/chat_completation/request/chat_completation_request.dart';
+import 'package:dart_chatgpt/src/model/chat_completation/response/chat_completation_response.dart';
+import 'package:dart_chatgpt/src/model/client/http_setup.dart';
+import 'package:dart_chatgpt/src/model/complete_text/request/complete_text.dart';
+import 'package:dart_chatgpt/src/model/complete_text/response/complete_response.dart';
+import 'package:dart_chatgpt/src/model/gen_image/request/generate_image.dart';
+import 'package:dart_chatgpt/src/model/gen_image/response/GenImgResponse.dart';
+import 'package:dart_chatgpt/src/model/openai_engine/engine_model.dart';
+import 'package:dart_chatgpt/src/model/openai_model/openai_models.dart';
+import 'package:dart_chatgpt/src/utils/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 import 'package:path/path.dart' as path;

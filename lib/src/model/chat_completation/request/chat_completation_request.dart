@@ -1,4 +1,4 @@
-import 'package:chatgpt/src/utils/constants.dart';
+import 'package:dart_chatgpt/src/utils/constants.dart';
 
 class ChatCompletionRequest {
   String? model;
