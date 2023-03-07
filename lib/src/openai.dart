@@ -13,8 +13,6 @@ import 'package:dart_chatgpt/src/model/openai_engine/engine_model.dart';
 import 'package:dart_chatgpt/src/model/openai_model/openai_models.dart';
 import 'package:dart_chatgpt/src/utils/constants.dart';
 import 'package:dio/dio.dart';
-import 'package:hive/hive.dart';
-import 'package:path/path.dart' as path;
 import 'client/exception/openai_exception.dart';
 import 'client/interceptor/interceptor_wrapper.dart';
 
@@ -30,9 +28,6 @@ class OpenAI {
   /// use for access for chat gpt [_token]
   static String? _token;
 
-  static Box<String>? _box;
-  static final boxDirPath = '${path.current}\\.data';
-
   /// set new token
   void setToken(String token) async {
     _token = token;
@@ -41,18 +36,10 @@ class OpenAI {
 
   String getToken() => "$_token";
 
-  ///new instance _box for keep my data
-  void _buildHive() async {
-    Hive.init(boxDirPath);
-    _box = await Hive.openBox('token_ai');
-  }
-
   ///build environment for openai [build]
   ///setup http client
   ///setup logger
   OpenAI build({String? token, HttpSetup? baseOption, bool isLogger = false}) {
-    _buildHive();
-
     if ("$token".isEmpty) throw MissionTokenException();
 
     final setup = baseOption ?? HttpSetup();
