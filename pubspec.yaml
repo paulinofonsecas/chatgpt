@@ -1,6 +1,6 @@
 name: dart_chatgpt
-description: chaGPT
-version: 1.0.1
+description: This plugin enhances the official openAI API including the ChatGPT-3.5-Turbo model 
+version: 1.0.2
 repository: https://github.com/paulinofonsecass/chatgpt
 
 environment:
